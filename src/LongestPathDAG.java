@@ -176,8 +176,8 @@ public class LongestPathDAG {
         } catch (IllegalArgumentException e) {
             System.err.println("\nError during calculation: " + e.getMessage());
         } catch (Exception e) {
-            // Catch for any other unexpected errors
-            System.err.println("\nUnexpected Error: " + e.getMessage());
+            // Display stack trace for any other unexpected errors
+            e.printStackTrace();
         }
     }
 
