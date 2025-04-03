@@ -37,7 +37,6 @@ This will generate ```LongestPathDAG.class``` file inside the ```src``` director
 ```java LongestPathDAG```\
 This will print the following output in the terminal
 ```
---- For a DAG Graph ---
 Longest path from vertex 1: 4
 Longest path from vertex 2: 3
 Longest path from vertex 3: 1
@@ -53,7 +52,6 @@ java LongestPathDAG 3
 ```
 This will print the following output
 ```
---- For a DAG Graph ---
 Longest path from vertex 3: 1
 ```
 

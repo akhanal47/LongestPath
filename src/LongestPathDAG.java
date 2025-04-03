@@ -105,17 +105,14 @@ public class LongestPathDAG {
         // Set the longest path variable to track the longest path to 0, will keep on increasing as new paths are visited
         long maxPath = 0;
 
-        // Check if edges list is initialized
-        if (currentVertex.edges != null) {
-            for (Edge edge : currentVertex.edges) {
-                Vertex neighbor = edge.to;
-                if (neighbor != null) {
-                    // Recursively find the longest path from the neighbor.
-                    long pathFromNeighbor = findLongestPathRecursive(neighbor, visiting);
+        for (Edge edge : currentVertex.edges) {
+            Vertex neighbor = edge.to;
+            if (neighbor != null) {
+                // Recursively find the longest path from the neighbor.
+                long pathFromNeighbor = findLongestPathRecursive(neighbor, visiting);
 
-                    // Path length through this neighbor is 1 (edge) as we have assumed all edges are of equal weights
-                    maxPath = Math.max(maxPath, pathFromNeighbor + 1);
-                }
+                // Path length through this neighbor is 1 (edge) as we have assumed all edges are of equal weights
+                maxPath = Math.max(maxPath, pathFromNeighbor + 1);
             }
         }
 
@@ -156,7 +153,6 @@ public class LongestPathDAG {
         v3.edges.add(new Edge(v3, v7));
         v4.edges.add(new Edge(v4, v3));
         v4.edges.add(new Edge(v4, v7));
-        v4.edges.add(new Edge(v4, v3));
         v5.edges.add(new Edge(v5, v6));
         v6.edges.add(new Edge(v6, v7));
 
@@ -176,14 +172,12 @@ public class LongestPathDAG {
                 System.out.println("Longest path from vertex " + startVertex.id + ": " + longestPath);
             }
         } catch (CycleDetectedException e) {
-            System.err.println("\nError processing the graph: " + e.getMessage());
-            System.err.println("Further calculations on this graph are stopped due to detected cycle.");
+            System.err.println("\nError processing the graph (cycle detected): " + e.getMessage());
         } catch (IllegalArgumentException e) {
             System.err.println("\nError during calculation: " + e.getMessage());
         } catch (Exception e) {
             // Catch for any other unexpected errors
-            System.err.println("\nAn unexpected error occurred: " + e);
-            e.printStackTrace();
+            System.err.println("\nUnexpected Error: " + e.getMessage());
         }
     }
 
@@ -192,8 +186,6 @@ public class LongestPathDAG {
      * @param args Command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("--- For a DAG Graph ---");
-
         // Create a sample graph as defined
         List<Vertex> graphVertices = createDAG();
 
